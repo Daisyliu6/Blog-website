@@ -8,18 +8,12 @@
 
 > a simple blog website 
 
-### 🏠 [Homepage]( )
+### 🏠 [Homepage]()
 
 ## Install
 
 ```sh
 npm install
-```
-
-## Run tests
-
-```sh
-npm run test
 ```
 
 ## Author
