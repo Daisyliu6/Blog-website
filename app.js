@@ -5,6 +5,7 @@ const ejs = require("ejs");
 const _ = require("lodash");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+// mongoose.set('useFindAndModify', false);
 
 const homeContent =
   "Lacus vel facilisis volutpat est velit egestas dui id ornare. Semper auctor neque vitae tempus quam. Sit amet cursus sit amet dictum sit amet justo. Viverra tellus in hac habitasse. Imperdiet proin fermentum leo vel orci porta. Donec ultrices tincidunt arcu non sodales neque sodales ut. Mattis molestie a iaculis at erat pellentesque adipiscing. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies. Adipiscing elit ut aliquam purus sit amet luctus venenatis lectus. Ultrices vitae auctor eu augue ut lectus arcu bibendum at. Odio euismod lacinia at quis risus sed vulputate odio ut. Cursus mattis molestie a iaculis at erat pellentesque adipiscing.";
@@ -22,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // setup public folder for static files
 app.use(express.static("public"));
 
-mongoose.connect(process.env.DATABASE, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.DATABASE, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 
 // Post Schema
 const postSchema = {
@@ -69,12 +70,31 @@ app.post("/compose", function (req, res) {
 // Use post ID to find the post
 app.get("/posts/:postId", function (req, res) {
   const requestedPostId = req.params.postId;
-  Post.findOne({ _id: requestedPostId }, function (err, post) {
+  Post.findById({ _id: requestedPostId }, function (err, post) {
+    if (!err) {
     res.render("post", {
       title: post.title,
       content: post.content
     });
+  } else {
+    res.send(err);
+  }
   });
+});
+
+// Delete the post using ID
+app.post("/posts/:postId", function(req, res){
+  console.log(req.params.postId);
+  Post.findByIdAndDelete(
+    {_id: req.params.postId},
+    function(err){
+      if (!err){
+        res.redirect("/");
+      } else {
+        res.send(err);
+      }
+    }
+  );
 });
 
 app.listen(3000, function () {
