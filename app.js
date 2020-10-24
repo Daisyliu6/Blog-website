@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // setup public folder for static files
 app.use(express.static("public"));
 
-mongoose.connect(process.env.DATABASE, {
+mongoose.connect(process.env.DATABASE_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
