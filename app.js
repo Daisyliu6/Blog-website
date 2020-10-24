@@ -25,7 +25,7 @@ mongoose.connect(process.env.DATABASE_URI, {
   useUnifiedTopology: true,
   useFindAndModify: false,
 });
-
+console.log(process.env.DATABASE_URI);
 // Post Schema
 const postSchema = {
   title: String,
