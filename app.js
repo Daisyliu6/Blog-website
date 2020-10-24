@@ -1,10 +1,10 @@
-//jshint esversion:6
+require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const _ = require("lodash");
 const mongoose = require("mongoose");
-const dotenv = require("dotenv");
+// const dotenv = require("dotenv");
 // mongoose.set('useFindAndModify', false);
 
 const homeContent = "You are a ukulele beyond my microphone. You are a Yukon beyond my Micronesia. You are a union beyond my meiosis. You are a eureka beyond my maitai. You are a Yuletide beyond my minesweeper.You are a euphemism beyond my myna bird."
@@ -12,7 +12,7 @@ const aboutContent = "Hi! I am Daisy. Welcome to my Blog. I love to post my thou
 const contactContent = "Hi there, Here is Daisy. 😊 You can find me via below methods. Looking forward to meeting you."
 
 const app = express();
-dotenv.config();
+// dotenv.config();
 // view engine setup
 app.set("view engine", "ejs");
 // body-parser to parse the post data to req.body
@@ -83,6 +83,15 @@ app.get("/posts/:postId", function (req, res) {
   });
 });
 
-app.listen(process.env.PORT || 3000, function () {
-  console.log("Server started on port 3000");
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+
+app.listen(port, function () {
+  console.log("Server started successfully!");
 });
+
+// app.listen(process.env.PORT || 3000, function () {
+//   console.log("Server started on port 3000");
+// });
