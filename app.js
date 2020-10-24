@@ -9,7 +9,7 @@ const dotenv = require("dotenv");
 
 const homeContent = "You are a ukulele beyond my microphone. You are a Yukon beyond my Micronesia. You are a union beyond my meiosis. You are a eureka beyond my maitai. You are a Yuletide beyond my minesweeper.You are a euphemism beyond my myna bird."
 const aboutContent = "Hi! I am Daisy. Welcome to my Blog. I love to post my thoughts."
-const contactContent = "Hi there, Here is Daisy. 😊 You can find me via below methods. Looking forward to eeting you."
+const contactContent = "Hi there, Here is Daisy. 😊 You can find me via below methods. Looking forward to meeting you."
 
 const app = express();
 dotenv.config();
