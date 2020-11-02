@@ -9,7 +9,7 @@
 > a simple blog website 
 
 ### 🏠 [Homepage]()
-#### Check it out here https://whispering-castle-30597.herokuapp.com/
+#### Check it out here https://powerful-stream-22479.herokuapp.com/
 ## Install
 
 ```sh
